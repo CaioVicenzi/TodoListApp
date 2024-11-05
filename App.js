@@ -30,7 +30,8 @@ const salvarLista = async (lista) => {
 const recuperarLista = async () => {
   try {
     const listaString = await AsyncStorage.getItem('@lista');
-    return listaString != null ? JSON.parse(listaString) : []; 
+    const listaJSON =  listaString != null ? JSON.parse(listaString) : []; 
+    setLista(listaJSON)
   } catch (error) {
     console.log("Erro ao recuperar a lista:", error);
     return [];
@@ -56,7 +57,6 @@ const recuperarLista = async () => {
           <View style= {styles.itemContainer}>
             <Text style={{ padding: 10, fontSize: 18 }}>{item}</Text>
           </View>
-          
         )}
       />
     </View>
@@ -77,14 +77,14 @@ const styles = StyleSheet.create({
 
   title : {
     fontWeight: 'bold',
-    fontSize: 24
+    fontSize: 32
   },
 
   addTarefaText: {
     color: 'white',
   },
   addTarefaButton: {
-    width: 300,
+    width: 350,
     backgroundColor: '#007AFF',
     borderRadius: 20,
     alignItems: 'center',
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 40,
-    width: 300,
+    width: 350,
     backgroundColor: 'white',
     borderWidth: 1,
     borderRadius: 10,
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderWidth: 1,
     borderColor: '#ddd',
-    width: 300,
+    width: 350,
     height: 60
   },
 
